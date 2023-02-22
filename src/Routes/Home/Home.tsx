@@ -1,22 +1,21 @@
 import styles from "../../styles";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import Note from "../../Components/Note/Note";
+import Header from "../../Components/Note/Header/Header";
 
 export default function Home() {
   const navigate = useNavigate();
+  const notes_sample = [
+    { title: "note1", content: "notes are great!" },
+    { title: "note2", content: "notes are awesome!" },
+  ];
   return (
     <div style={styles.background}>
-      <div style={{ ...styles.header, ...{ height: "8vh" } }}>
-        <p style={styles.text_medium}>React - A Notes Demo</p>
-      </div>
-      <div style={styles.flex_column}>
-        <div style={styles.note}>
-          <p style={styles.text_medium}>Note Title</p>
-          <div style={styles.note_content}>
-            <p style={styles.text_small}>Notes Content</p>
-          </div>
-        </div>
-      </div>
+      <Header />
+      {notes_sample.map((note) => (
+        <Note title={note.title} content={note.content} />
+      ))}
       <div style={styles.flex_row}>
         <Button
           style={styles.button_add}

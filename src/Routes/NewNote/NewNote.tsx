@@ -1,22 +1,31 @@
 import styles from "../../styles";
 import { Button } from "@mui/material";
-import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
+import Header from "../../Components/Note/Header/Header";
 
 export default function NewNote() {
   const navigate = useNavigate();
   return (
     <div style={styles.background}>
-      <div style={{ ...styles.header, ...{ height: "8vh" } }}>
-        <p style={styles.text_medium}>React - A Notes Demo</p>
-      </div>
+      <Header />
       <p style={styles.text_medium}>New Note</p>
       <div style={styles.flex_column}>
         <div style={styles.note}>
-          <p style={styles.text_medium}>Note Title</p>
+          <input style={styles.input_notetitle} maxLength={20} />
           <div style={styles.note_content}>
-            <p style={styles.text_small}>Notes Content</p>
+            <p style={styles.text_small}>Content</p>
+            <textarea style={styles.input_notebody} />
           </div>
+          <Button
+            style={styles.button_add}
+            variant="contained"
+            onClick={() => {
+              console.log("foo");
+              navigate("/");
+            }}
+          >
+            Add Note
+          </Button>
         </div>
       </div>
       <div style={styles.flex_row}>
