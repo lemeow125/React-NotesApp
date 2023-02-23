@@ -1,10 +1,12 @@
 import * as React from "react";
 import styles from "../../styles";
 import { Button } from "@mui/material";
+import axios from "axios";
 
 export interface props {
   title: string;
   content: string;
+  id: number;
 }
 export default function Note(props: props) {
   return (
@@ -18,7 +20,7 @@ export default function Note(props: props) {
           style={styles.button_remove}
           variant="contained"
           onClick={() => {
-            console.log("foo");
+            axios.delete("http://localhost:8000/notes/" + props.id + "/");
           }}
         >
           Remove Note

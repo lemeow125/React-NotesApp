@@ -11,7 +11,7 @@ export default function NoteMapper() {
   const [notes, setNotes] = useState([]);
   const [error, setError] = useState(false);
   const [errormessage, seterrormessage] = useState("");
-  useEffect(() => {
+  function server_get() {
     axios
       .get("http://localhost:8000/notes/")
       .then((res) => {
@@ -22,6 +22,13 @@ export default function NoteMapper() {
         setError(true);
         seterrormessage(err);
       });
+  }
+  useEffect(() => {
+    server_get();
+    const interval = setInterval(() => {
+      server_get();
+    }, 1000);
+    return () => clearInterval(interval);
   }, []);
   if (error) {
     return (
@@ -50,9 +57,16 @@ export default function NoteMapper() {
   }
   return (
     <>
-      {notes.map((note: { title: string; content: string }, i) => {
+      {notes.map((note: { title: string; content: string; id: number }, i) => {
         console.log(note);
-        return <Note key={i} title={note.title} content={note.content} />;
+        return (
+          <Note
+            id={note.id}
+            key={i}
+            title={note.title}
+            content={note.content}
+          />
+        );
       })}
 
       <Button
