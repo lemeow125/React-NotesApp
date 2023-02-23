@@ -2,7 +2,7 @@ import styles from "../../styles";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Header from "../../Components/Note/Header/Header";
+import Header from "../../Components/Header/Header";
 import axios from "axios";
 import { title } from "process";
 

@@ -2,10 +2,9 @@ import styles from "../../styles";
 import { Button } from "@mui/material";
 
 import Note from "../../Components/Note/Note";
-import Header from "../../Components/Note/Header/Header";
+import Header from "../../Components/Header/Header";
 import { useEffect, useState } from "react";
-import NoteMapper from "../../Components/Note/NoteMapper/NoteMapper";
-
+import NoteMapper from "../../Components/NoteMapper/NoteMapper";
 export default function Home() {
   const [notes, setNotes] = useState();
   const notes_sample = [

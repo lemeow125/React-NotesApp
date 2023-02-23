@@ -1,8 +1,8 @@
 import * as React from "react";
-import styles from "../../../styles";
+import styles from "../../styles";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Note from "../Note";
+import Note from "../Note/Note";
 import { Button } from "@mui/material";
 import axios from "axios";
 
