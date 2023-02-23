@@ -8,13 +8,14 @@ import axios from "axios";
 
 export default function NoteMapper() {
   const navigate = useNavigate();
-  const [notes, setNotes] = useState([{ title: "", content: "" }]);
+  const [notes, setNotes] = useState([]);
   const [error, setError] = useState(false);
   const [errormessage, seterrormessage] = useState("");
   useEffect(() => {
     axios
       .get("http://localhost:8000/notes/")
       .then((res) => {
+        console.log("Server Response", res.data);
         setNotes(res.data);
       })
       .catch((err) => {
@@ -50,6 +51,7 @@ export default function NoteMapper() {
   return (
     <>
       {notes.map((note: { title: string; content: string }, i) => {
+        console.log(note);
         return <Note key={i} title={note.title} content={note.content} />;
       })}
 

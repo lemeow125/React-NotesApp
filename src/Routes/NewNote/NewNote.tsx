@@ -44,7 +44,7 @@ export default function NewNote() {
             variant="contained"
             onClick={async () => {
               axios.post("http://localhost:8000/notes/", {
-                title: note.content,
+                title: note.title,
                 content: note.content,
               });
               console.log("foo");
