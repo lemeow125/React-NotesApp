@@ -20,7 +20,9 @@ export default function Note(props: props) {
           style={styles.button_remove}
           variant="contained"
           onClick={() => {
-            axios.delete("http://localhost:8000/notes/" + props.id + "/");
+            axios.delete(
+              "http://localhost:8000/api/v1/notes/" + props.id + "/"
+            );
           }}
         >
           Remove Note

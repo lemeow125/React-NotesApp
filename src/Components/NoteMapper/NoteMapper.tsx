@@ -10,17 +10,16 @@ export default function NoteMapper() {
   const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
   const [error, setError] = useState(false);
-  const [errormessage, seterrormessage] = useState("");
   function server_get() {
     axios
-      .get("http://localhost:8000/notes/")
+      .get("http://localhost:8000/api/v1/notes/", { timeout: 50 })
       .then((res) => {
         console.log("Server Response", res.data);
+        setError(false);
         setNotes(res.data);
       })
       .catch((err) => {
         setError(true);
-        seterrormessage(err);
       });
   }
   useEffect(() => {
@@ -33,8 +32,7 @@ export default function NoteMapper() {
   if (error) {
     return (
       <div style={styles.note}>
-        <p style={styles.text_medium}>404</p>
-        <p style={styles.text_medium}>{errormessage}</p>
+        <p style={styles.text_medium}>Error contacting Notes server</p>
       </div>
     );
   }
@@ -68,7 +66,6 @@ export default function NoteMapper() {
           />
         );
       })}
-
       <Button
         style={styles.button_add}
         variant="contained"

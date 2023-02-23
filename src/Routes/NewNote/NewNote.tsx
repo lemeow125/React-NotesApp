@@ -43,7 +43,7 @@ export default function NewNote() {
             style={styles.button_add}
             variant="contained"
             onClick={async () => {
-              axios.post("http://localhost:8000/notes/", {
+              axios.post("http://localhost:8000/api/v1/notes/", {
                 title: note.title,
                 content: note.content,
               });
