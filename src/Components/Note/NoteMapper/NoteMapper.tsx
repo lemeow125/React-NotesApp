@@ -4,23 +4,22 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Note from "../Note";
 import { Button } from "@mui/material";
+import axios from "axios";
 
 export default function NoteMapper() {
   const navigate = useNavigate();
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState([{ title: "", content: "" }]);
   const [error, setError] = useState(false);
   const [errormessage, seterrormessage] = useState("");
   useEffect(() => {
-    fetch("localhost:8000/notes")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setNotes(data);
+    axios
+      .get("http://localhost:8000/notes/")
+      .then((res) => {
+        setNotes(res.data);
       })
       .catch((err) => {
         setError(true);
-        console.log(err.message);
-        seterrormessage(err.message);
+        seterrormessage(err);
       });
   }, []);
   if (error) {
@@ -31,26 +30,29 @@ export default function NoteMapper() {
       </div>
     );
   }
-  if (!notes) {
-    <div style={styles.note}>
-      <p style={styles.text_medium}>No notes exist yet</p>
-      <p style={styles.text_medium}>Make one!</p>
-      <Button
-        style={styles.button_add}
-        variant="contained"
-        onClick={() => {
-          navigate("/NewNote");
-        }}
-      >
-        Add Note
-      </Button>
-    </div>;
+  if (notes.length === 0) {
+    return (
+      <div style={styles.note}>
+        <p style={styles.text_medium}>No notes exist yet</p>
+        <p style={styles.text_medium}>Make one!</p>
+        <Button
+          style={styles.button_add}
+          variant="contained"
+          onClick={() => {
+            navigate("/NewNote");
+          }}
+        >
+          Add Note
+        </Button>
+      </div>
+    );
   }
   return (
     <>
-      {notes.map((note: { title: string; content: string }) => (
-        <Note title={note.title} content={note.content} />
-      ))}
+      {notes.map((note: { title: string; content: string }, i) => {
+        return <Note key={i} title={note.title} content={note.content} />;
+      })}
+
       <Button
         style={styles.button_add}
         variant="contained"
