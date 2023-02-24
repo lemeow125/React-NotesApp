@@ -55,17 +55,28 @@ export default function NoteMapper() {
   }
   return (
     <>
-      {notes.map((note: { title: string; content: string; id: number }, i) => {
-        console.log(note);
-        return (
-          <Note
-            id={note.id}
-            key={i}
-            title={note.title}
-            content={note.content}
-          />
-        );
-      })}
+      {notes.map(
+        (
+          note: {
+            title: string;
+            content: string;
+            id: number;
+            date_created: string;
+          },
+          i
+        ) => {
+          console.log(note);
+          return (
+            <Note
+              id={note.id}
+              key={i}
+              title={note.title}
+              content={note.content}
+              date_created={note.date_created}
+            />
+          );
+        }
+      )}
       <Button
         style={styles.button_add}
         variant="contained"
