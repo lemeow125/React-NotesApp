@@ -1,7 +1,6 @@
 import * as React from "react";
 import styles from "../../styles";
 import { Button } from "@mui/material";
-import axios from "axios";
 import { useMutation, useQueryClient } from "react-query";
 import { DeleteNote } from "../Api/Api";
 

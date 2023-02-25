@@ -3,10 +3,8 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Header from "../../Components/Header/Header";
-import axios from "axios";
 import { AddNote } from "../../Components/Api/Api";
 import { useMutation, useQueryClient } from "react-query";
-import { title } from "process";
 
 export interface input {
   e: React.ChangeEvent;
