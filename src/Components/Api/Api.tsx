@@ -40,3 +40,18 @@ export function UserLogin(user: user) {
       return false;
     });
 }
+
+export function UserInfo() {
+  return axios
+    .get("http://localhost:8000/api/v1/accounts/users/me/", {
+      headers: { Authorization: "Bearer " + "Token hereee!" },
+    })
+    .then((response) => {
+      if (response.data) {
+        return response.data;
+      }
+    })
+    .catch((error) => {
+      console.log("Error in fetching user data");
+    });
+}
