@@ -1,38 +1,25 @@
 import * as React from "react";
 import styles from "../../styles";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Note from "../Note/Note";
 import { Button } from "@mui/material";
-import axios from "axios";
+import { useQuery } from "react-query";
+import { GetNotes } from "../Api/Api";
 
-export default function NoteMapper() {
+export default function Notes() {
   const navigate = useNavigate();
-  const [notes, setNotes] = useState([]);
-  const [error, setError] = useState(false);
-  function server_get() {
-    axios
-      .get("http://localhost:8000/api/v1/notes/", { timeout: 50 })
-      .then((res) => {
-        console.log("Server Response", res.data);
-        setError(false);
-        setNotes(res.data);
-      })
-      .catch((err) => {
-        setError(true);
-      });
-  }
-  useEffect(() => {
-    server_get();
-    const interval = setInterval(() => {
-      server_get();
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  const { data: notes, isLoading, error } = useQuery("notes", GetNotes);
   if (error) {
     return (
       <div style={styles.note}>
         <p style={styles.text_medium}>Error contacting Notes server</p>
+      </div>
+    );
+  }
+  if (isLoading) {
+    return (
+      <div style={styles.note}>
+        <p style={styles.text_medium}>Loading Notes...</p>
       </div>
     );
   }
@@ -53,6 +40,7 @@ export default function NoteMapper() {
       </div>
     );
   }
+
   return (
     <>
       {notes.map(
@@ -63,13 +51,12 @@ export default function NoteMapper() {
             id: number;
             date_created: string;
           },
-          i
+          index: number
         ) => {
-          console.log(note);
           return (
             <Note
               id={note.id}
-              key={i}
+              key={index}
               title={note.title}
               content={note.content}
               date_created={note.date_created}
