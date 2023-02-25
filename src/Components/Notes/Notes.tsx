@@ -53,7 +53,6 @@ export default function Notes() {
           },
           index: number
         ) => {
-          console.log(note);
           return (
             <Note
               id={note.id}
