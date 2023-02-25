@@ -6,20 +6,11 @@ import Note from "../Note/Note";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useQuery } from "react-query";
+import { GetNotes } from "../Api/Api";
 
 export default function Notes() {
   const navigate = useNavigate();
-  const {
-    data: notes,
-    isLoading,
-    error,
-  } = useQuery("notes", () => {
-    return fetch("http://localhost:8000/api/v1/notes/").then((res) => {
-      const result = res.json();
-      console.log();
-      return result;
-    });
-  });
+  const { data: notes, isLoading, error } = useQuery("notes", GetNotes);
   if (error) {
     return (
       <div style={styles.note}>
