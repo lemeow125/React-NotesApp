@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./Routes/Home/Home";
 import NewNote from "./Routes/NewNote/NewNote";
+import Login from "./Routes/Login/Login";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/NewNote",
     element: <NewNote />,
+  },
+  {
+    path: "/Login",
+    element: <Login />,
   },
 ]);
 

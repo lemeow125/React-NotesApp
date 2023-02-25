@@ -2,7 +2,8 @@ import * as React from "react";
 
 import styles from "../../styles";
 import AppIcon from "../AppIcon/AppIcon";
-import Login from "../Login/Login";
+import Login from "../LoginButton/LoginButton";
+import HomeIcon from "../HomeIcon/HomeIcon";
 
 export default function Header() {
   return (
@@ -14,7 +15,10 @@ export default function Header() {
             ...{ flex: 2 },
           }}
         >
-          <AppIcon size="8vh" color="white" />
+          <HomeIcon size="5vh" color="white" />
+          <HomeIcon size="5vh" color="white" />
+          <HomeIcon size="5vh" color="white" />
+          <HomeIcon size="5vh" color="white" />
         </div>
         <div
           style={{
@@ -22,6 +26,7 @@ export default function Header() {
             ...{ flex: 6 },
           }}
         >
+          <AppIcon size="8vh" color="white" />
           <p style={styles.text_medium}>Clip Notes</p>
         </div>
         <div

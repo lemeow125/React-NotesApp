@@ -1,10 +1,12 @@
 import * as React from "react";
 import { useState } from "react";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import styles from "../../styles";
 
-export default function Login() {
+export default function LoginButton() {
   const [logged_in, setLoggedIn] = useState(false);
+  const navigate = useNavigate();
   if (!logged_in) {
     return (
       <div style={styles.flex_row}>
@@ -14,7 +16,7 @@ export default function Login() {
           style={styles.button_green}
           variant="contained"
           onClick={() => {
-            setLoggedIn(true);
+            navigate("/Login");
           }}
         >
           Login

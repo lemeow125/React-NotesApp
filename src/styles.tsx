@@ -22,6 +22,17 @@ const styles: { [key: string]: React.CSSProperties } = {
     alignItems: "center",
     justifyContent: "center",
   },
+  window: {
+    alignSelf: "center",
+    width: "60%",
+    minHeight: "128px",
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: "#0087e4",
+    margin: 16,
+    padding: 16,
+    borderRadius: 16,
+  },
   note: {
     display: "flex",
     flexDirection: "column",
@@ -78,6 +89,17 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     flexDirection: "row",
     width: "256x",
+    marginTop: 4,
+    marginBottom: 4,
+  },
+  button_yellow: {
+    backgroundColor: "#e2b465",
+    alignSelf: "center",
+    display: "flex",
+    flexDirection: "row",
+    width: "256x",
+    marginTop: 4,
+    marginBottom: 4,
   },
   button_red: {
     backgroundColor: "#bc231e",
@@ -85,6 +107,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     flexDirection: "row",
     width: "256px",
+    marginTop: 4,
+    marginBottom: 4,
   },
   text_small: {
     color: "white",
@@ -92,6 +116,13 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: "bold",
     textAlign: "center",
   },
+  text_small_red: {
+    color: "#bc231e",
+    fontSize: "2vh",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+
   text_medium: {
     color: "white",
     fontSize: "4vh",
