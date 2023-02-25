@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Header from "../../Components/Header/Header";
 import axios from "axios";
+import { AddNote } from "../../Components/Api/Api";
+import { useMutation, useQueryClient } from "react-query";
 import { title } from "process";
 
 export interface input {
@@ -15,6 +17,14 @@ export default function NewNote() {
     title: "",
     content: "",
   });
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: AddNote,
+    onSuccess: () => {
+      queryClient.invalidateQueries("notes");
+    },
+  });
+
   return (
     <div style={styles.background}>
       <Header />
@@ -43,8 +53,10 @@ export default function NewNote() {
             style={styles.button_add}
             variant="contained"
             onClick={async () => {
-              axios.post("http://localhost:8000/api/v1/notes/", note);
-              console.log("foo");
+              mutation.mutate({
+                title: note.title,
+                content: note.content,
+              });
               navigate("/");
             }}
           >

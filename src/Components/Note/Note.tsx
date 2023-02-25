@@ -2,7 +2,8 @@ import * as React from "react";
 import styles from "../../styles";
 import { Button } from "@mui/material";
 import axios from "axios";
-import { useQueryClient } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
+import { DeleteNote } from "../Api/Api";
 
 export interface props {
   title: string;
@@ -12,6 +13,12 @@ export interface props {
 }
 export default function Note(props: props) {
   const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: DeleteNote,
+    onSuccess: () => {
+      queryClient.invalidateQueries("notes");
+    },
+  });
   return (
     <div style={styles.flex_column}>
       <div style={styles.note}>
@@ -24,9 +31,7 @@ export default function Note(props: props) {
           style={styles.button_remove}
           variant="contained"
           onClick={() => {
-            axios.delete(
-              "http://localhost:8000/api/v1/notes/" + props.id + "/"
-            );
+            mutation.mutate(props.id);
           }}
         >
           Remove Note
