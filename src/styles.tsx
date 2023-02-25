@@ -17,6 +17,11 @@ const styles: { [key: string]: React.CSSProperties } = {
     padding: 8,
     borderRadius: 4,
   },
+  header_contentwrapper: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   note: {
     display: "flex",
     flexDirection: "column",
@@ -67,14 +72,14 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontSize: "2vh",
     fontWeight: "bold",
   },
-  button_add: {
+  button_green: {
     backgroundColor: "#0dbc6a",
     alignSelf: "center",
     display: "flex",
     flexDirection: "row",
     width: "256x",
   },
-  button_remove: {
+  button_red: {
     backgroundColor: "#bc231e",
     alignSelf: "center",
     display: "flex",
@@ -98,6 +103,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     flexDirection: "column",
   },
   flex_row: {
+    width: "100%",
     justifyContent: "center",
     display: "flex",
     flexDirection: "row",
