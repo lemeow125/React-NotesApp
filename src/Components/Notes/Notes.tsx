@@ -6,7 +6,7 @@ import Note from "../Note/Note";
 import { Button } from "@mui/material";
 import axios from "axios";
 
-export default function NoteMapper() {
+export default function Notes() {
   const navigate = useNavigate();
   const [notes, setNotes] = useState([]);
   const [error, setError] = useState(false);
