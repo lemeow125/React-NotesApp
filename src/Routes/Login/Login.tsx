@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import { useState } from "react";
 import { Button } from "@mui/material";
+import { UserLogin } from "../../Components/Api/Api";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -12,7 +13,8 @@ export default function Login() {
     username: "",
     password: "",
   });
-  console.log("We are in the" + useLocation());
+  const [error, setError] = useState("");
+
   return (
     <div style={styles.background}>
       <Header />
@@ -44,17 +46,22 @@ export default function Login() {
         <Button
           style={styles.button_green}
           variant="contained"
-          onClick={() => {
-            navigate("/Login");
+          onClick={async () => {
+            if (await UserLogin(user)) {
+              navigate("/");
+            } else {
+              setError("Invalid Login");
+            }
           }}
         >
           Login
         </Button>
+        <p style={styles.text_small_red}>{error}</p>
         <Button
           style={styles.button_yellow}
           variant="contained"
           onClick={() => {
-            navigate("/Login");
+            navigate("/Register");
           }}
         >
           Register

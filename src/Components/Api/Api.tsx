@@ -22,3 +22,21 @@ export function AddNote(note: note) {
 export function DeleteNote(id: number) {
   return axios.delete("http://localhost:8000/api/v1/notes/" + id + "/");
 }
+
+export interface user {
+  username: string;
+  password: string;
+}
+
+export function UserLogin(user: user) {
+  return axios
+    .post("http://localhost:8000/api/v1/accounts/token/login", user)
+    .then((response) => {
+      console.log("Success! Token: " + response.data);
+      return true;
+    })
+    .catch((error) => {
+      console.log("Login Failed: " + error);
+      return false;
+    });
+}
