@@ -2,6 +2,7 @@ import * as React from "react";
 import styles from "../../styles";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { useQueryClient } from "react-query";
 
 export interface props {
   title: string;
@@ -10,6 +11,7 @@ export interface props {
   date_created: string;
 }
 export default function Note(props: props) {
+  const queryClient = useQueryClient();
   return (
     <div style={styles.flex_column}>
       <div style={styles.note}>
