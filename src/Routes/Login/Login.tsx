@@ -5,10 +5,14 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { UserLogin } from "../../Components/Api/Api";
+import { UserLogin, UserInfo } from "../../Components/Api/Api";
+import { SetLoggedIn } from "../../Features/Redux/Slices/LoginSlice/LoginSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { SetUser } from "../../Features/Redux/Slices/LoggedInUserSlice/LoggedInUserSlice";
 
 export default function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -52,6 +56,8 @@ export default function Login() {
                 username: "",
                 password: "",
               });
+              dispatch(SetLoggedIn());
+              dispatch(SetUser(await UserInfo()));
               navigate("/");
             } else {
               setError("Invalid Login");
