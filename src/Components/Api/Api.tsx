@@ -30,9 +30,11 @@ export interface user {
 
 export function UserLogin(user: user) {
   return axios
-    .post("http://localhost:8000/api/v1/accounts/token/login", user)
-    .then((response) => {
-      console.log("Success! Token: " + response.data);
+    .post("http://localhost:8000/api/v1/accounts/token/login/", user)
+    .then(async (response) => {
+      console.log("Login Success! Token: " + response.data);
+      localStorage.setItem("token", response.data);
+      console.log(await UserInfo());
       return true;
     })
     .catch((error) => {
@@ -42,16 +44,18 @@ export function UserLogin(user: user) {
 }
 
 export function UserInfo() {
+  const token = localStorage.getItem("token");
   return axios
     .get("http://localhost:8000/api/v1/accounts/users/me/", {
-      headers: { Authorization: "Bearer " + "Token hereee!" },
+      headers: {
+        Authorization: "Token 8b3a393fc7601a5a1f2a831bc795905c05420782",
+      },
     })
     .then((response) => {
-      if (response.data) {
-        return response.data;
-      }
+      return response.data;
     })
     .catch((error) => {
       console.log("Error in fetching user data");
+      console.log(error);
     });
 }
