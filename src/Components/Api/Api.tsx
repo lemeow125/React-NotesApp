@@ -1,5 +1,7 @@
 import axios from "axios";
-import { useSelector, useDispatch } from "react-redux";
+
+// Note APIs
+
 export function GetNotes() {
   return axios.get("http://localhost:8000/api/v1/notes/").then((response) => {
     return response.data;
@@ -23,6 +25,8 @@ export function DeleteNote(id: number) {
   return axios.delete("http://localhost:8000/api/v1/notes/" + id + "/");
 }
 
+// User APIs
+
 export interface user {
   username: string;
   password: string;
@@ -33,7 +37,10 @@ export function UserLogin(user: user) {
     .post("http://localhost:8000/api/v1/accounts/token/login/", user)
     .then(async (response) => {
       localStorage.setItem("token", JSON.stringify(response.data.auth_token));
-      console.log("Stored: ", JSON.parse(localStorage.getItem("token") || ""));
+      console.log(
+        "Login Success! Stored Token: ",
+        JSON.parse(localStorage.getItem("token") || "")
+      );
       return true;
     })
     .catch((error) => {

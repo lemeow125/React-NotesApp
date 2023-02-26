@@ -5,10 +5,11 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { UserLogin, UserInfo } from "../../Components/Api/Api";
-import { SetLoggedIn } from "../../Features/Redux/Slices/LoginSlice/LoginSlice";
+import { UserInfo, UserLogin } from "../../Components/Api/Api";
+
 import { useSelector, useDispatch } from "react-redux";
 import { SetUser } from "../../Features/Redux/Slices/LoggedInUserSlice/LoggedInUserSlice";
+import { SetLoggedIn } from "../../Features/Redux/Slices/LoginSlice/LoginSlice";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -18,7 +19,6 @@ export default function Login() {
     password: "",
   });
   const [error, setError] = useState("");
-
   return (
     <div style={styles.background}>
       <Header />
@@ -51,13 +51,13 @@ export default function Login() {
           style={styles.button_green}
           variant="contained"
           onClick={async () => {
+            setUser({
+              username: "",
+              password: "",
+            });
             if (await UserLogin(user)) {
-              setUser({
-                username: "",
-                password: "",
-              });
-              dispatch(SetLoggedIn());
-              dispatch(SetUser(await UserInfo()));
+              await dispatch(SetLoggedIn());
+              await dispatch(SetUser(await UserInfo()));
               navigate("/");
             } else {
               setError("Invalid Login");
