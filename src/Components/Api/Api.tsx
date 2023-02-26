@@ -32,9 +32,9 @@ export function UserLogin(user: user) {
   return axios
     .post("http://localhost:8000/api/v1/accounts/token/login/", user)
     .then(async (response) => {
-      console.log(response.data);
-      localStorage.setItem("token", response.data);
-      console.log(await UserInfo());
+      localStorage.setItem("token", JSON.stringify(response.data.auth_token));
+      console.log("Stored: ", JSON.parse(localStorage.getItem("token") || ""));
+      StoreUser();
       return true;
     })
     .catch((error) => {
@@ -43,12 +43,46 @@ export function UserLogin(user: user) {
     });
 }
 
-export function UserInfo() {
-  const token = localStorage.getItem("token");
+export function StoreUser() {
+  const token = JSON.parse(localStorage.getItem("token") || "");
   return axios
     .get("http://localhost:8000/api/v1/accounts/users/me/", {
       headers: {
-        Authorization: "Token 8b3a393fc7601a5a1f2a831bc795905c05420782",
+        Authorization: "Token " + token,
+      },
+    })
+    .then((response) => {
+      localStorage.setItem("user", JSON.stringify(response.data));
+    })
+    .catch((error) => {
+      console.log("Error in storing user data");
+      console.log(error);
+    });
+}
+
+export function UserInfo() {
+  const token = JSON.parse(localStorage.getItem("token") || "");
+  return axios
+    .get("http://localhost:8000/api/v1/accounts/users/me/", {
+      headers: {
+        Authorization: "Token " + token,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log("Error in fetching user data");
+      console.log(error);
+    });
+}
+
+export function GetUsername() {
+  const token = JSON.parse(localStorage.getItem("token") || "");
+  return axios
+    .get("http://localhost:8000/api/v1/accounts/users/me/", {
+      headers: {
+        Authorization: "Token " + token,
       },
     })
     .then((response) => {

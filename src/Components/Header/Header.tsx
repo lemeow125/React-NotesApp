@@ -15,10 +15,10 @@ export default function Header() {
             ...{ flex: 2 },
           }}
         >
-          <HomeIcon size="5vh" color="white" />
-          <HomeIcon size="5vh" color="white" />
-          <HomeIcon size="5vh" color="white" />
-          <HomeIcon size="5vh" color="white" />
+          <HomeIcon size={32} color="white" />
+          <HomeIcon size={32} color="white" />
+          <HomeIcon size={32} color="white" />
+          <HomeIcon size={32} color="white" />
         </div>
         <div
           style={{

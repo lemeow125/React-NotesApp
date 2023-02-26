@@ -1,7 +1,7 @@
 import * as React from "react";
 import styles from "../../styles";
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import { useState } from "react";
 import { Button } from "@mui/material";
@@ -48,6 +48,10 @@ export default function Login() {
           variant="contained"
           onClick={async () => {
             if (await UserLogin(user)) {
+              setUser({
+                username: "",
+                password: "",
+              });
               navigate("/");
             } else {
               setError("Invalid Login");
