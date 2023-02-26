@@ -65,3 +65,21 @@ export function UserInfo() {
       console.log(error);
     });
 }
+
+export interface activation {
+  uid: string;
+  token: string;
+}
+
+export function UserActivate(activation: activation) {
+  return axios
+    .post("http://localhost:8000/api/v1/accounts/users/activation/", activation)
+    .then(async (response) => {
+      console.log("Activation Success");
+      return true;
+    })
+    .catch((error) => {
+      console.log("Activation failed: " + error);
+      return false;
+    });
+}
