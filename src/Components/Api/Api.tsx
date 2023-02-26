@@ -32,7 +32,7 @@ export function UserLogin(user: user) {
   return axios
     .post("http://localhost:8000/api/v1/accounts/token/login/", user)
     .then(async (response) => {
-      console.log("Login Success! Token: " + response.data);
+      console.log(response.data);
       localStorage.setItem("token", response.data);
       console.log(await UserInfo());
       return true;
