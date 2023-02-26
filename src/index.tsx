@@ -10,6 +10,9 @@ import Login from "./Routes/Login/Login";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
+import { Provider } from "react-redux";
+import Store from "./Features/Redux/Store/Store";
+
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
@@ -33,9 +36,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <Provider store={Store}>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </Provider>
   </React.StrictMode>
 );
 
