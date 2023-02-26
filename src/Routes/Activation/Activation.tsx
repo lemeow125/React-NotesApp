@@ -1,7 +1,7 @@
 import styles from "../../styles";
 import Header from "../../Components/Header/Header";
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserActivate } from "../../Components/Api/Api";
 
 export interface activation {
@@ -19,9 +19,11 @@ export default function Activation() {
       setStatus(2);
     }
   }
-  if (uid && token) {
-    verify({ uid, token });
-  }
+  useEffect(() => {
+    if (uid && token) {
+      verify({ uid, token });
+    }
+  }, []);
   if (status === 1) {
     return (
       <div style={styles.background}>

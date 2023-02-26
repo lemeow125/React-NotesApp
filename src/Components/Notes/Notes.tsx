@@ -8,11 +8,15 @@ import { GetNotes } from "../Api/Api";
 
 export default function Notes() {
   const navigate = useNavigate();
-  const { data: notes, isLoading, error } = useQuery("notes", GetNotes);
+  const {
+    data: notes,
+    isLoading,
+    error,
+  } = useQuery("notes", GetNotes, { retry: 0 });
   if (error) {
     return (
       <div style={styles.note}>
-        <p style={styles.text_medium}>Error contacting Notes server</p>
+        <p style={styles.text_medium_red}>Error contacting Notes server</p>
       </div>
     );
   }

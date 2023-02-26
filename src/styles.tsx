@@ -134,6 +134,12 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: "bold",
     textAlign: "center",
   },
+  text_medium_red: {
+    color: "#bc231e",
+    fontSize: "4vh",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
   flex_column: {
     display: "flex",
     flexDirection: "column",
