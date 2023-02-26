@@ -10,25 +10,51 @@ export interface activation {
 }
 export default function Activation() {
   let { uid, token } = useParams();
-  const [activationStatus, setStatus] = useState("Activating...");
+  const [status, setStatus] = useState(0);
   async function verify(activation: activation) {
     let status = await UserActivate(activation);
     if (status) {
-      setStatus("Success!");
+      setStatus(1);
     } else {
-      setStatus("Invalid Activation Link");
+      setStatus(2);
     }
   }
   if (uid && token) {
     verify({ uid, token });
   }
+  if (status === 1) {
+    return (
+      <div style={styles.background}>
+        <Header />
+        <div style={styles.note}>
+          <p style={styles.text_small}>User ID: {uid}</p>
+          <p style={styles.text_small}>Activation Token: {token}</p>
+          <p style={styles.text_small_green}>
+            Activation Successful. Please login
+          </p>
+        </div>
+      </div>
+    );
+  }
+  if (status === 2) {
+    return (
+      <div style={styles.background}>
+        <Header />
+        <div style={styles.note}>
+          <p style={styles.text_small}>User ID: {uid}</p>
+          <p style={styles.text_small}>Activation Token: {token}</p>
+          <p style={styles.text_small_red}>Invalid Activation Link</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div style={styles.background}>
       <Header />
       <div style={styles.note}>
-        <p style={styles.text_medium}>User ID: {uid}</p>
-        <p style={styles.text_medium}>Activation Token: {token}</p>
-        <p style={styles.text_medium}>{activationStatus}</p>
+        <p style={styles.text_small}>User ID: {uid}</p>
+        <p style={styles.text_small}>Activation Token: {token}</p>
+        <p style={styles.text_small}>Activating...</p>
       </div>
     </div>
   );

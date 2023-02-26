@@ -122,7 +122,12 @@ const styles: { [key: string]: React.CSSProperties } = {
     fontWeight: "bold",
     textAlign: "center",
   },
-
+  text_small_green: {
+    color: "#0dbc6a",
+    fontSize: "2vh",
+    fontWeight: "bold",
+    textAlign: "center",
+  },
   text_medium: {
     color: "white",
     fontSize: "4vh",
