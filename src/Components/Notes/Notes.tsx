@@ -8,11 +8,15 @@ import { GetNotes } from "../Api/Api";
 
 export default function Notes() {
   const navigate = useNavigate();
-  const { data: notes, isLoading, error } = useQuery("notes", GetNotes);
+  const {
+    data: notes,
+    isLoading,
+    error,
+  } = useQuery("notes", GetNotes, { retry: 0 });
   if (error) {
     return (
       <div style={styles.note}>
-        <p style={styles.text_medium}>Error contacting Notes server</p>
+        <p style={styles.text_medium_red}>Error contacting Notes server</p>
       </div>
     );
   }
@@ -29,7 +33,7 @@ export default function Notes() {
         <p style={styles.text_medium}>No notes exist yet</p>
         <p style={styles.text_medium}>Make one!</p>
         <Button
-          style={styles.button_add}
+          style={styles.button_green}
           variant="contained"
           onClick={() => {
             navigate("/NewNote");
@@ -65,7 +69,7 @@ export default function Notes() {
         }
       )}
       <Button
-        style={styles.button_add}
+        style={styles.button_green}
         variant="contained"
         onClick={() => {
           navigate("/NewNote");

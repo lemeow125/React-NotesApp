@@ -27,7 +27,7 @@ export default function Note(props: props) {
         </div>
         <p style={styles.text_medium}>Timestamp: {props.date_created}</p>
         <Button
-          style={styles.button_remove}
+          style={styles.button_red}
           variant="contained"
           onClick={() => {
             mutation.mutate(props.id);

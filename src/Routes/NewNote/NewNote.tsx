@@ -48,7 +48,7 @@ export default function NewNote() {
             />
           </div>
           <Button
-            style={styles.button_add}
+            style={styles.button_green}
             variant="contained"
             onClick={async () => {
               mutation.mutate({
@@ -64,7 +64,7 @@ export default function NewNote() {
       </div>
       <div style={styles.flex_row}>
         <Button
-          style={styles.button_remove}
+          style={styles.button_red}
           variant="contained"
           onClick={() => {
             navigate("/");

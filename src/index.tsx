@@ -6,8 +6,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Home from "./Routes/Home/Home";
 import NewNote from "./Routes/NewNote/NewNote";
+import Login from "./Routes/Login/Login";
+import Activation from "./Routes/Activation/Activation";
+import Register from "./Routes/Register/Register";
 
 import { QueryClient, QueryClientProvider } from "react-query";
+
+import { Provider } from "react-redux";
+import Store from "./Features/Redux/Store/Store";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +26,18 @@ const router = createBrowserRouter([
     path: "/NewNote",
     element: <NewNote />,
   },
+  {
+    path: "/Login",
+    element: <Login />,
+  },
+  {
+    path: "/Register",
+    element: <Register />,
+  },
+  {
+    path: "/Activation/:uid/:token",
+    element: <Activation />,
+  },
 ]);
 
 const root = ReactDOM.createRoot(
@@ -28,9 +46,11 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-    </QueryClientProvider>
+    <Provider store={Store}>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </Provider>
   </React.StrictMode>
 );
 
