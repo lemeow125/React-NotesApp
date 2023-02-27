@@ -26,6 +26,24 @@ export function DeleteNote(id: number) {
 }
 
 // User APIs
+export interface register {
+  email: string;
+  username: string;
+  password: string;
+}
+
+export function UserRegister(register: register) {
+  return axios
+    .post("http://localhost:8000/api/v1/accounts/users/", register)
+    .then(async (response) => {
+      console.log(response.data);
+      return true;
+    })
+    .catch((error) => {
+      console.log("Registration failed: " + error);
+      return false;
+    });
+}
 
 export interface user {
   username: string;

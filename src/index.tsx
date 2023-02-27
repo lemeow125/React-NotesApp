@@ -8,6 +8,7 @@ import Home from "./Routes/Home/Home";
 import NewNote from "./Routes/NewNote/NewNote";
 import Login from "./Routes/Login/Login";
 import Activation from "./Routes/Activation/Activation";
+import Register from "./Routes/Register/Register";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/Login",
     element: <Login />,
+  },
+  {
+    path: "/Register",
+    element: <Register />,
   },
   {
     path: "/Activation/:uid/:token",
