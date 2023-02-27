@@ -26,7 +26,7 @@ export default function Header() {
             ...{ flex: 6 },
           }}
         >
-          <AppIcon size="8vh" color="white" />
+          <AppIcon size={48} color="white" />
           <p style={styles.text_medium}>Clip Notes</p>
         </div>
         <div

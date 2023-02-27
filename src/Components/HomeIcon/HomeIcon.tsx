@@ -15,8 +15,8 @@ export default function HomeIcon(props: props) {
       style={{
         backgroundColor: "#005997",
         borderRadius: 16,
-        width: props.size || 32,
-        height: props.size || 32,
+        width: props.size + "px",
+        height: props.size + "px",
         margin: 4,
         alignContent: "center",
         alignItems: "center",
@@ -25,8 +25,8 @@ export default function HomeIcon(props: props) {
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={props.size - 4}
-        height={props.size - 4}
+        width={props.size - 4 + "px"}
+        height={props.size - 4 + "px"}
         viewBox="0 0 24 24"
         stroke-width="2"
         stroke={props.color}
