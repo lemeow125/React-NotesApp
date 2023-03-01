@@ -58,6 +58,7 @@ export default function Notes() {
       {notes.map(
         (
           note: {
+            owner: string;
             title: string;
             content: string;
             id: number;
@@ -72,6 +73,7 @@ export default function Notes() {
               title={note.title}
               content={note.content}
               date_created={note.date_created}
+              owner={note.owner}
             />
           );
         }

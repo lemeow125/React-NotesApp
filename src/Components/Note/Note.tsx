@@ -16,7 +16,8 @@ export default function Note(props: NoteProps) {
   return (
     <div style={styles.flex_column}>
       <div style={styles.note}>
-        <p style={styles.text_medium}>{props.title}</p>
+        <p style={styles.text_medium}>Owner: {props.owner}</p>
+        <p style={styles.text_medium}>Title: {props.title}</p>
         <div style={styles.note_content}>
           <p style={styles.text_small}>{props.content}</p>
         </div>

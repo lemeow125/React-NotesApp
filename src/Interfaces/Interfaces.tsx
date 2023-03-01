@@ -20,6 +20,7 @@ export interface NoteProps {
   content: string;
   id: number;
   date_created: string;
+  owner: string;
 }
 
 export interface IconProps {
