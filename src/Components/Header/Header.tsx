@@ -18,7 +18,6 @@ export default function Header() {
           <HomeIcon size={32} color="white" />
           <HomeIcon size={32} color="white" />
           <HomeIcon size={32} color="white" />
-          <HomeIcon size={32} color="white" />
         </div>
         <div
           style={{

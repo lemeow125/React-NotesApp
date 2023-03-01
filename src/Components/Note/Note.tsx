@@ -3,14 +3,9 @@ import styles from "../../styles";
 import { Button } from "@mui/material";
 import { useMutation, useQueryClient } from "react-query";
 import { DeleteNote } from "../Api/Api";
+import { NoteProps } from "../../Interfaces/Interfaces";
 
-export interface props {
-  title: string;
-  content: string;
-  id: number;
-  date_created: string;
-}
-export default function Note(props: props) {
+export default function Note(props: NoteProps) {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: DeleteNote,

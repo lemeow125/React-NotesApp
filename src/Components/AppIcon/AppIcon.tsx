@@ -1,11 +1,7 @@
 import * as React from "react";
+import { IconProps } from "../../Interfaces/Interfaces";
 
-export interface props {
-  size: number;
-  color: string;
-}
-
-export default function AppIcon(props: props) {
+export default function AppIcon(props: IconProps) {
   return (
     <>
       <svg

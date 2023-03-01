@@ -5,23 +5,14 @@ import styles from "../../styles";
 import { useDispatch, useSelector } from "react-redux";
 import { SetLoggedOut } from "../../Features/Redux/Slices/LoginSlice/LoginSlice";
 import { UnsetUser } from "../../Features/Redux/Slices/LoggedInUserSlice/LoggedInUserSlice";
-
-export interface user {
-  LoggedInUser: {
-    value: {
-      email: string;
-      id: number;
-      username: string;
-    };
-  };
-}
+import { LoggedInUserState, LoginState } from "../../Interfaces/Interfaces";
 
 export default function LoginButton() {
   const dispatch = useDispatch();
-  const logged_in = useSelector(
-    (state: { Login: { logged_in: boolean } }) => state.Login.logged_in
+  const logged_in = useSelector((state: LoginState) => state.Login.logged_in);
+  const logged_in_user = useSelector(
+    (state: LoggedInUserState) => state.LoggedInUser.value
   );
-  const logged_in_user = useSelector((state: user) => state.LoggedInUser.value);
   const navigate = useNavigate();
   if (!logged_in) {
     return (

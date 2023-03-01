@@ -1,13 +1,9 @@
 import { Button } from "@mui/material";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
+import { IconProps } from "../../Interfaces/Interfaces";
 
-export interface props {
-  size: number;
-  color: string;
-}
-
-export default function HomeIcon(props: props) {
+export default function HomeIcon(props: IconProps) {
   const navigate = useNavigate();
   return (
     <Button

@@ -6,6 +6,7 @@ import { Button } from "@mui/material";
 import { useQuery } from "react-query";
 import { GetNotes } from "../Api/Api";
 import { useSelector } from "react-redux";
+import { LoginState } from "../../Interfaces/Interfaces";
 
 export default function Notes() {
   const navigate = useNavigate();
@@ -14,9 +15,7 @@ export default function Notes() {
     isLoading,
     error,
   } = useQuery("notes", GetNotes, { retry: 0 });
-  const logged_in = useSelector(
-    (state: { Login: { logged_in: boolean } }) => state.Login.logged_in
-  );
+  const logged_in = useSelector((state: LoginState) => state.Login.logged_in);
   if (!logged_in) {
     return (
       <div style={styles.note}>

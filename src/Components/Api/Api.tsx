@@ -1,4 +1,10 @@
 import axios from "axios";
+import {
+  ActivationParams,
+  AddNoteParams,
+  LoginParams,
+  RegistrationParams,
+} from "../../Interfaces/Interfaces";
 
 // Note APIs
 
@@ -15,12 +21,7 @@ export function GetNotes() {
     });
 }
 
-export interface note {
-  title: string;
-  content: string;
-}
-
-export function AddNote(note: note) {
+export function AddNote(note: AddNoteParams) {
   const token = JSON.parse(localStorage.getItem("token") || "");
   return axios
     .post("http://localhost:8000/api/v1/notes/", note, {
@@ -43,13 +44,8 @@ export function DeleteNote(id: number) {
 }
 
 // User APIs
-export interface register {
-  email: string;
-  username: string;
-  password: string;
-}
 
-export function UserRegister(register: register) {
+export function UserRegister(register: RegistrationParams) {
   return axios
     .post("http://localhost:8000/api/v1/accounts/users/", register)
     .then(async (response) => {
@@ -62,12 +58,7 @@ export function UserRegister(register: register) {
     });
 }
 
-export interface user {
-  username: string;
-  password: string;
-}
-
-export function UserLogin(user: user) {
+export function UserLogin(user: LoginParams) {
   return axios
     .post("http://localhost:8000/api/v1/accounts/token/login/", user)
     .then(async (response) => {
@@ -101,12 +92,7 @@ export function UserInfo() {
     });
 }
 
-export interface activation {
-  uid: string;
-  token: string;
-}
-
-export function UserActivate(activation: activation) {
+export function UserActivate(activation: ActivationParams) {
   return axios
     .post("http://localhost:8000/api/v1/accounts/users/activation/", activation)
     .then(async (response) => {
