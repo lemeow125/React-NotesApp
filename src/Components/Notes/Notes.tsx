@@ -5,6 +5,7 @@ import Note from "../Note/Note";
 import { Button } from "@mui/material";
 import { useQuery } from "react-query";
 import { GetNotes } from "../Api/Api";
+import { useSelector } from "react-redux";
 
 export default function Notes() {
   const navigate = useNavigate();
@@ -13,21 +14,29 @@ export default function Notes() {
     isLoading,
     error,
   } = useQuery("notes", GetNotes, { retry: 0 });
+  const logged_in = useSelector(
+    (state: { Login: { logged_in: boolean } }) => state.Login.logged_in
+  );
+  if (!logged_in) {
+    return (
+      <div style={styles.note}>
+        <p style={styles.text_medium}>Please login to use Clip Notes</p>
+      </div>
+    );
+  }
   if (error) {
     return (
       <div style={styles.note}>
         <p style={styles.text_medium_red}>Error contacting Notes server</p>
       </div>
     );
-  }
-  if (isLoading) {
+  } else if (isLoading) {
     return (
       <div style={styles.note}>
         <p style={styles.text_medium}>Loading Notes...</p>
       </div>
     );
-  }
-  if (notes.length === 0) {
+  } else if (notes.length === 0) {
     return (
       <div style={styles.note}>
         <p style={styles.text_medium}>No notes exist yet</p>

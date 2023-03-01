@@ -3,9 +3,16 @@ import axios from "axios";
 // Note APIs
 
 export function GetNotes() {
-  return axios.get("http://localhost:8000/api/v1/notes/").then((response) => {
-    return response.data;
-  });
+  const token = JSON.parse(localStorage.getItem("token") || "");
+  return axios
+    .get("http://localhost:8000/api/v1/notes/", {
+      headers: {
+        Authorization: "Token " + token,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    });
 }
 
 export interface note {
@@ -14,15 +21,25 @@ export interface note {
 }
 
 export function AddNote(note: note) {
+  const token = JSON.parse(localStorage.getItem("token") || "");
   return axios
-    .post("http://localhost:8000/api/v1/notes/", note)
+    .post("http://localhost:8000/api/v1/notes/", note, {
+      headers: {
+        Authorization: "Token " + token,
+      },
+    })
     .then((response) => {
       return response.data;
     });
 }
 
 export function DeleteNote(id: number) {
-  return axios.delete("http://localhost:8000/api/v1/notes/" + id + "/");
+  const token = JSON.parse(localStorage.getItem("token") || "");
+  return axios.delete("http://localhost:8000/api/v1/notes/" + id + "/", {
+    headers: {
+      Authorization: "Token " + token,
+    },
+  });
 }
 
 // User APIs
