@@ -82,7 +82,6 @@ const styles: { [key: string]: React.CSSProperties } = {
     width: "100%",
     minWidth: "100%",
     minHeight: "512px",
-
     fontSize: "2vh",
     fontWeight: "bold",
   },
