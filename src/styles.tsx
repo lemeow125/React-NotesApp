@@ -47,6 +47,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   note_content: {
     display: "flex",
+    flexWrap: "wrap",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -80,7 +81,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     height: "100%",
     width: "100%",
     minWidth: "100%",
-    maxHeight: "200px",
+    minHeight: "512px",
+
     fontSize: "2vh",
     fontWeight: "bold",
   },

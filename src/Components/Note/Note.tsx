@@ -19,7 +19,11 @@ export default function Note(props: NoteProps) {
         <p style={styles.text_medium}>Owner: {props.owner}</p>
         <p style={styles.text_medium}>Title: {props.title}</p>
         <div style={styles.note_content}>
-          <p style={styles.text_small}>{props.content}</p>
+          <textarea
+            style={styles.input_notebody}
+            disabled={true}
+            value={props.content}
+          />
         </div>
         <p style={styles.text_medium}>Timestamp: {props.date_created}</p>
         <Button

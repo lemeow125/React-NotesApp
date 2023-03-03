@@ -42,8 +42,8 @@ export default function NewNote() {
           <div style={styles.note_content}>
             <textarea
               style={styles.input_notebody}
-              onChange={(e: { target: { value: any } }) => {
-                setNote({ ...note, content: e.target.value });
+              onChange={async (e: { target: { value: any } }) => {
+                await setNote({ ...note, content: e.target.value });
               }}
             />
           </div>
@@ -51,11 +51,13 @@ export default function NewNote() {
             style={styles.button_green}
             variant="contained"
             onClick={async () => {
-              mutation.mutate({
-                title: note.title,
-                content: note.content,
-              });
-              navigate("/");
+              try {
+                await mutation.mutate({
+                  title: note.title,
+                  content: note.content,
+                });
+                navigate("/");
+              } catch (error) {}
             }}
           >
             Add Note
