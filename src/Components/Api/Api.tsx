@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   ActivationParams,
+  UpdateNoteParams,
   AddNoteParams,
   LoginParams,
   RegistrationParams,
@@ -18,6 +19,36 @@ export function GetNotes() {
     })
     .then((response) => {
       return response.data;
+    });
+}
+
+export function GetNote(id: number) {
+  const token = JSON.parse(localStorage.getItem("token") || "");
+  return axios
+    .get("http://localhost:8000/api/v1/notes/" + id + "/", {
+      headers: {
+        Authorization: "Token " + token,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    });
+}
+
+export function UpdateNote(note: UpdateNoteParams) {
+  const token = JSON.parse(localStorage.getItem("token") || "");
+  return axios
+    .patch("http://localhost:8000/api/v1/notes/" + note.id + "/", note, {
+      headers: {
+        Authorization: "Token " + token,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    })
+    .catch((error) => {
+      console.log("Error updating note", error);
+      return error;
     });
 }
 

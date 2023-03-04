@@ -14,6 +14,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 import { Provider } from "react-redux";
 import Store from "./Features/Redux/Store/Store";
+import ViewEditNote from "./Routes/ViewEditNote/ViewEditNote";
 
 const queryClient = new QueryClient();
 
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
   {
     path: "/Activation/:uid/:token",
     element: <Activation />,
+  },
+  {
+    path: "/Note/:id",
+    element: <ViewEditNote />,
   },
 ]);
 

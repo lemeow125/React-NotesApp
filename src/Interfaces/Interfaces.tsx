@@ -50,3 +50,9 @@ export interface AddNoteParams {
   title: string;
   content: string;
 }
+
+export interface UpdateNoteParams {
+  id: number;
+  title: string;
+  content: string;
+}
