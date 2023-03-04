@@ -62,7 +62,7 @@ export default function Notes() {
             title: string;
             content: string;
             id: number;
-            date_created: string;
+            date_created: Date;
           },
           index: number
         ) => {

@@ -25,7 +25,9 @@ export default function Note(props: NoteProps) {
             value={props.content}
           />
         </div>
-        <p style={styles.text_medium}>Timestamp: {props.date_created}</p>
+        <p style={styles.text_medium}>
+          Timestamp: {String(props.date_created)}
+        </p>
         <Button
           style={styles.button_red}
           variant="contained"

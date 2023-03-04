@@ -19,7 +19,7 @@ export interface NoteProps {
   title: string;
   content: string;
   id: number;
-  date_created: string;
+  date_created: Date;
   owner: string;
 }
 
