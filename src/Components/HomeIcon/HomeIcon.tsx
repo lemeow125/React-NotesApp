@@ -24,11 +24,11 @@ export default function HomeIcon(props: IconProps) {
         width={props.size - 4 + "px"}
         height={props.size - 4 + "px"}
         viewBox="0 0 24 24"
-        stroke-width="2"
+        strokeWidth="2"
         stroke={props.color}
         fill="none"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
         <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
