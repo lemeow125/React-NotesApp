@@ -12,30 +12,38 @@ export default function UserPage() {
     return (
       <div style={styles.background}>
         <Header />
-        <p style={styles.text_medium}>Loading...</p>
+        <div style={styles.note}>
+          <p style={styles.text_medium}>Loading...</p>
+        </div>
       </div>
     );
   } else if (error) {
     return (
       <div style={styles.background}>
         <Header />
-        <p style={styles.text_medium_red}>An error has occured</p>
+        <div style={styles.note}>
+          <p style={styles.text_medium_red}>An error has occured</p>
+        </div>
       </div>
     );
   } else if (!logged_in) {
     return (
       <div style={styles.background}>
         <Header />
-        <p style={styles.text_medium_red}>Please login to view user info</p>
+        <div style={styles.note}>
+          <p style={styles.text_medium_red}>Please login to view user info</p>
+        </div>
       </div>
     );
   }
   return (
     <div style={styles.background}>
       <Header />
-      <p style={styles.text_medium}>Username: {data.username}</p>
-      <p style={styles.text_medium}>Email: {data.email}</p>
-      <p style={styles.text_medium}>User ID: {data.id}</p>
+      <div style={styles.note}>
+        <p style={styles.text_medium}>Username: {data.username}</p>
+        <p style={styles.text_medium}>Email: {data.email}</p>
+        <p style={styles.text_medium}>User ID: {data.id}</p>
+      </div>
     </div>
   );
 }

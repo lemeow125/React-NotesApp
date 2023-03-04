@@ -10,7 +10,7 @@ import {
 // Note APIs
 
 export function GetNotes() {
-  const token = JSON.parse(localStorage.getItem("token") || "");
+  const token = JSON.parse(localStorage.getItem("token") || "{}");
   return axios
     .get("http://localhost:8000/api/v1/notes/", {
       headers: {
@@ -23,7 +23,7 @@ export function GetNotes() {
 }
 
 export function GetNote(id: number) {
-  const token = JSON.parse(localStorage.getItem("token") || "");
+  const token = JSON.parse(localStorage.getItem("token") || "{}");
   return axios
     .get("http://localhost:8000/api/v1/notes/" + id + "/", {
       headers: {
@@ -36,7 +36,7 @@ export function GetNote(id: number) {
 }
 
 export function UpdateNote(note: UpdateNoteParams) {
-  const token = JSON.parse(localStorage.getItem("token") || "");
+  const token = JSON.parse(localStorage.getItem("token") || "{}");
   return axios
     .patch("http://localhost:8000/api/v1/notes/" + note.id + "/", note, {
       headers: {
@@ -53,7 +53,7 @@ export function UpdateNote(note: UpdateNoteParams) {
 }
 
 export function AddNote(note: AddNoteParams) {
-  const token = JSON.parse(localStorage.getItem("token") || "");
+  const token = JSON.parse(localStorage.getItem("token") || "{}");
   return axios
     .post("http://localhost:8000/api/v1/notes/", note, {
       headers: {
@@ -62,16 +62,25 @@ export function AddNote(note: AddNoteParams) {
     })
     .then((response) => {
       return response.data;
+    })
+    .catch((error) => {
+      console.log("Error adding note", error);
+      return error;
     });
 }
 
 export function DeleteNote(id: number) {
-  const token = JSON.parse(localStorage.getItem("token") || "");
-  return axios.delete("http://localhost:8000/api/v1/notes/" + id + "/", {
-    headers: {
-      Authorization: "Token " + token,
-    },
-  });
+  const token = JSON.parse(localStorage.getItem("token") || "{}");
+  return axios
+    .delete("http://localhost:8000/api/v1/notes/" + id + "/", {
+      headers: {
+        Authorization: "Token " + token,
+      },
+    })
+    .catch((error) => {
+      console.log("Error deleting note", error);
+      return error;
+    });
 }
 
 // User APIs
@@ -96,7 +105,7 @@ export function UserLogin(user: LoginParams) {
       localStorage.setItem("token", JSON.stringify(response.data.auth_token));
       console.log(
         "Login Success! Stored Token: ",
-        JSON.parse(localStorage.getItem("token") || "")
+        JSON.parse(localStorage.getItem("token") || "{}")
       );
       return true;
     })
@@ -107,7 +116,7 @@ export function UserLogin(user: LoginParams) {
 }
 
 export function UserInfo() {
-  const token = JSON.parse(localStorage.getItem("token") || "");
+  const token = JSON.parse(localStorage.getItem("token") || "{}");
   return axios
     .get("http://localhost:8000/api/v1/accounts/users/me/", {
       headers: {
@@ -117,10 +126,6 @@ export function UserInfo() {
     .then((response) => {
       console.log(response.data);
       return response.data;
-    })
-    .catch((error) => {
-      console.log("Error in fetching user data");
-      console.log(error);
     });
 }
 
