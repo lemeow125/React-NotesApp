@@ -16,23 +16,22 @@ export default function Notes() {
     error,
   } = useQuery("notes", GetNotes, { retry: 0 });
   const logged_in = useSelector((state: LoginState) => state.Login.logged_in);
-  if (error) {
-    return (
-      <div style={styles.note}>
-        <p style={styles.text_medium_red}>Error contacting Notes server</p>
-      </div>
-    );
-  } else if (isLoading) {
+  if (isLoading) {
     return (
       <div style={styles.note}>
         <p style={styles.text_medium}>Loading Notes...</p>
       </div>
     );
-  }
-  if (!logged_in) {
+  } else if (!logged_in && !error) {
     return (
       <div style={styles.note}>
         <p style={styles.text_medium}>Please login to use Clip Notes</p>
+      </div>
+    );
+  } else if (error) {
+    return (
+      <div style={styles.note}>
+        <p style={styles.text_medium_red}>Error contacting Notes server</p>
       </div>
     );
   } else if (notes.length === 0) {
