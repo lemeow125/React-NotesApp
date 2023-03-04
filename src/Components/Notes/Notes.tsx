@@ -6,7 +6,7 @@ import { Button } from "@mui/material";
 import { useQuery } from "react-query";
 import { GetNotes } from "../Api/Api";
 import { useSelector } from "react-redux";
-import { LoginState } from "../../Interfaces/Interfaces";
+import { LoginState, NoteProps } from "../../Interfaces/Interfaces";
 
 export default function Notes() {
   const navigate = useNavigate();
@@ -55,29 +55,18 @@ export default function Notes() {
 
   return (
     <>
-      {notes.map(
-        (
-          note: {
-            owner: string;
-            title: string;
-            content: string;
-            id: number;
-            date_created: Date;
-          },
-          index: number
-        ) => {
-          return (
-            <Note
-              id={note.id}
-              key={index}
-              title={note.title}
-              content={note.content}
-              date_created={note.date_created}
-              owner={note.owner}
-            />
-          );
-        }
-      )}
+      {notes.map((note: NoteProps, index: number) => {
+        return (
+          <Note
+            id={note.id}
+            key={index}
+            title={note.title}
+            content={note.content}
+            date_created={note.date_created}
+            owner={note.owner}
+          />
+        );
+      })}
       <Button
         style={styles.button_green}
         variant="contained"
