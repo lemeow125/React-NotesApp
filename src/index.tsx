@@ -9,12 +9,13 @@ import NewNote from "./Routes/NewNote/NewNote";
 import Login from "./Routes/Login/Login";
 import Activation from "./Routes/Activation/Activation";
 import Register from "./Routes/Register/Register";
+import UserPage from "./Routes/UserPage/UserPage";
+import ViewEditNote from "./Routes/ViewEditNote/ViewEditNote";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
 import { Provider } from "react-redux";
 import Store from "./Features/Redux/Store/Store";
-import ViewEditNote from "./Routes/ViewEditNote/ViewEditNote";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
   {
     path: "/Note/:id",
     element: <ViewEditNote />,
+  },
+  {
+    path: "/User",
+    element: <UserPage />,
   },
 ]);
 

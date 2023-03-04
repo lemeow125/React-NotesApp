@@ -115,6 +115,7 @@ export function UserInfo() {
       },
     })
     .then((response) => {
+      console.log(response.data);
       return response.data;
     })
     .catch((error) => {
