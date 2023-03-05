@@ -47,6 +47,7 @@ const styles: { [key: string]: React.CSSProperties } = {
   },
   note_content: {
     display: "flex",
+    flexWrap: "wrap",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
@@ -80,7 +81,8 @@ const styles: { [key: string]: React.CSSProperties } = {
     height: "100%",
     width: "100%",
     minWidth: "100%",
-    maxHeight: "200px",
+    minHeight: "256px",
+    maxHeight: "768px",
     fontSize: "2vh",
     fontWeight: "bold",
   },
@@ -90,8 +92,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     flexDirection: "row",
     width: "256x",
-    marginTop: 4,
-    marginBottom: 4,
+    margin: 4,
   },
   button_yellow: {
     backgroundColor: "#e2b465",
@@ -99,8 +100,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     flexDirection: "row",
     width: "256px",
-    marginTop: 4,
-    marginBottom: 4,
+    margin: 4,
   },
   button_red: {
     backgroundColor: "#bc231e",
@@ -108,8 +108,7 @@ const styles: { [key: string]: React.CSSProperties } = {
     display: "flex",
     flexDirection: "row",
     width: "256px",
-    marginTop: 4,
-    marginBottom: 4,
+    margin: 4,
   },
   text_small: {
     color: "white",

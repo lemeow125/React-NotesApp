@@ -4,6 +4,7 @@ import styles from "../../styles";
 import AppIcon from "../AppIcon/AppIcon";
 import Login from "../LoginButton/LoginButton";
 import HomeIcon from "../HomeIcon/HomeIcon";
+import UserIcon from "../UserIcon/UserIcon";
 
 export default function Header() {
   return (
@@ -16,9 +17,7 @@ export default function Header() {
           }}
         >
           <HomeIcon size={32} color="white" />
-          <HomeIcon size={32} color="white" />
-          <HomeIcon size={32} color="white" />
-          <HomeIcon size={32} color="white" />
+          <UserIcon size={32} color="white" />
         </div>
         <div
           style={{

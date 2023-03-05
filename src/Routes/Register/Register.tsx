@@ -1,16 +1,12 @@
 import * as React from "react";
 import styles from "../../styles";
 
-import { useNavigate } from "react-router-dom";
 import Header from "../../Components/Header/Header";
 import { useState } from "react";
 import { Button } from "@mui/material";
-import { UserInfo, UserLogin } from "../../Components/Api/Api";
-
 import { UserRegister } from "../../Components/Api/Api";
 
 export default function Register() {
-  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     username: "",
@@ -27,7 +23,7 @@ export default function Register() {
           <div style={{ margin: 4 }} />
           <input
             style={styles.input_notetitle}
-            onChange={(e: { target: { value: any } }) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setUser({ ...user, email: e.target.value });
             }}
             maxLength={20}
@@ -38,7 +34,7 @@ export default function Register() {
           <div style={{ margin: 4 }} />
           <input
             style={styles.input_notetitle}
-            onChange={(e: { target: { value: any } }) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setUser({ ...user, username: e.target.value });
             }}
             maxLength={20}
@@ -50,7 +46,7 @@ export default function Register() {
           <input
             style={styles.input_notetitle}
             type="password"
-            onChange={(e: { target: { value: any } }) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setUser({ ...user, password: e.target.value });
             }}
             maxLength={20}
@@ -61,9 +57,7 @@ export default function Register() {
           variant="contained"
           onClick={async () => {
             setUser({
-              email: "",
-              username: "",
-              password: "",
+              ...user,
             });
             if (await UserRegister(user)) {
               setFeedback(

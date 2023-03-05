@@ -3,15 +3,12 @@ import Header from "../../Components/Header/Header";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { UserActivate } from "../../Components/Api/Api";
+import { ActivationParams } from "../../Interfaces/Interfaces";
 
-export interface activation {
-  uid: string;
-  token: string;
-}
 export default function Activation() {
   let { uid, token } = useParams();
   const [status, setStatus] = useState(0);
-  async function verify(activation: activation) {
+  async function verify(activation: ActivationParams) {
     let status = await UserActivate(activation);
     if (status) {
       setStatus(1);
@@ -23,7 +20,7 @@ export default function Activation() {
     if (uid && token) {
       verify({ uid, token });
     }
-  }, []);
+  }, [uid, token]);
   if (status === 1) {
     return (
       <div style={styles.background}>

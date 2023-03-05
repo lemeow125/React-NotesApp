@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Button } from "@mui/material";
 import { UserInfo, UserLogin } from "../../Components/Api/Api";
 
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { SetUser } from "../../Features/Redux/Slices/LoggedInUserSlice/LoggedInUserSlice";
 import { SetLoggedIn } from "../../Features/Redux/Slices/LoginSlice/LoginSlice";
 
@@ -29,7 +29,7 @@ export default function Login() {
           <div style={{ margin: 4 }} />
           <input
             style={styles.input_notetitle}
-            onChange={(e: { target: { value: any } }) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setUser({ ...user, username: e.target.value });
             }}
             maxLength={20}
@@ -41,7 +41,7 @@ export default function Login() {
           <input
             style={styles.input_notetitle}
             type="password"
-            onChange={(e: { target: { value: any } }) => {
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setUser({ ...user, password: e.target.value });
             }}
             maxLength={20}
