@@ -22,16 +22,16 @@ export default function Notes() {
         <p style={styles.text_medium}>Loading Notes...</p>
       </div>
     );
+  } else if (!logged_in && error) {
+    return (
+      <div style={styles.note}>
+        <p style={styles.text_medium}>Please login to use Clip Notes</p>
+      </div>
+    );
   } else if (error) {
     return (
       <div style={styles.note}>
         <p style={styles.text_medium_red}>Error contacting Notes server</p>
-      </div>
-    );
-  } else if (!logged_in) {
-    return (
-      <div style={styles.note}>
-        <p style={styles.text_medium}>Please login to use Clip Notes</p>
       </div>
     );
   } else if (notes.length === 0) {
