@@ -1,18 +1,3 @@
-// Redux Interfaces
-export interface LoginState {
-  Login: { logged_in: boolean };
-}
-
-export interface LoggedInUserState {
-  LoggedInUser: {
-    value: {
-      email: string;
-      id: number;
-      username: string;
-    };
-  };
-}
-
 // Component Props Interfaces
 
 export interface NoteProps {
