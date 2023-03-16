@@ -3,12 +3,14 @@ import Header from "../../Components/Header/Header";
 import { UserInfo } from "../../Components/Api/Api";
 import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
-import { LoginState } from "../../Interfaces/Interfaces";
 import LoginButton from "../../Components/LoginButton/LoginButton";
+import { RootState } from "../../Features/Redux/Store/Store";
 
 export default function UserPage() {
   const { data, isLoading, error } = useQuery("user", UserInfo, { retry: 0 });
-  const logged_in = useSelector((state: LoginState) => state.Login.logged_in);
+  const logged_in = useSelector(
+    (state: RootState) => state.logged_in.value
+    );
   if (isLoading && !error) {
     return (
       <div style={styles.background}>

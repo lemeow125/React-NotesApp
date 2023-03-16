@@ -5,14 +5,16 @@ import styles from "../../styles";
 import { useDispatch, useSelector } from "react-redux";
 import { SetLoggedOut } from "../../Features/Redux/Slices/LoginSlice/LoginSlice";
 import { UnsetUser } from "../../Features/Redux/Slices/LoggedInUserSlice/LoggedInUserSlice";
-import { LoggedInUserState, LoginState } from "../../Interfaces/Interfaces";
+import { RootState } from "../../Features/Redux/Store/Store";
 
 export default function LoginButton() {
   const dispatch = useDispatch();
-  const logged_in = useSelector((state: LoginState) => state.Login.logged_in);
+  const logged_in = useSelector(
+    (state: RootState) => state.logged_in.value
+    );
   const logged_in_user = useSelector(
-    (state: LoggedInUserState) => state.LoggedInUser.value
-  );
+    (state: RootState) => state.logged_in_user.value
+    );
   const navigate = useNavigate();
   if (!logged_in) {
     return (
