@@ -26,7 +26,6 @@ export default function Register() {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setUser({ ...user, email: e.target.value });
             }}
-            maxLength={20}
           />
         </div>
         <div style={styles.flex_row}>
@@ -37,7 +36,6 @@ export default function Register() {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setUser({ ...user, username: e.target.value });
             }}
-            maxLength={20}
           />
         </div>
         <div style={styles.flex_row}>
@@ -49,7 +47,6 @@ export default function Register() {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setUser({ ...user, password: e.target.value });
             }}
-            maxLength={20}
           />
         </div>
         <Button
