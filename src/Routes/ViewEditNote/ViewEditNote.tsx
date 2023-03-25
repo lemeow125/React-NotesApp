@@ -3,9 +3,8 @@ import { Button } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../../Components/Header/Header";
-import { AddNote, GetNote, UpdateNote } from "../../Components/Api/Api";
+import { GetNote, UpdateNote } from "../../Components/Api/Api";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { NoteProps } from "../../Interfaces/Interfaces";
 
 export interface input {
   e: React.ChangeEvent;
@@ -34,7 +33,7 @@ export default function ViewNote() {
   });
   useEffect(() => {
     setNote(data);
-  }, []);
+  }, [data]);
   if (error) {
     return (
       <div style={styles.background}>
@@ -47,8 +46,10 @@ export default function ViewNote() {
   }
   if (isLoading) {
     return (
-      <div style={styles.note}>
-        <p style={styles.text_medium}>Loading Note...</p>
+      <div style={styles.background}>
+        <div style={styles.note}>
+          <p style={styles.text_medium}>Loading Note...</p>
+        </div>
       </div>
     );
   }
