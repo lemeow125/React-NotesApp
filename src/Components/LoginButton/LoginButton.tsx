@@ -3,18 +3,16 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import styles from "../../styles";
 import { useDispatch, useSelector } from "react-redux";
-import { SetLoggedOut } from "../../Features/Redux/Slices/LoginSlice/LoginSlice";
+import { Toggle_Login } from "../../Features/Redux/Slices/LoginSlice/LoginSlice";
 import { UnsetUser } from "../../Features/Redux/Slices/LoggedInUserSlice/LoggedInUserSlice";
 import { RootState } from "../../Features/Redux/Store/Store";
 
 export default function LoginButton() {
   const dispatch = useDispatch();
-  const logged_in = useSelector(
-    (state: RootState) => state.logged_in.value
-    );
+  const logged_in = useSelector((state: RootState) => state.logged_in.value);
   const logged_in_user = useSelector(
     (state: RootState) => state.logged_in_user.value
-    );
+  );
   const navigate = useNavigate();
   if (!logged_in) {
     return (
@@ -42,7 +40,7 @@ export default function LoginButton() {
         variant="contained"
         onClick={() => {
           console.log("Logged out...");
-          dispatch(SetLoggedOut());
+          dispatch(Toggle_Login());
           dispatch(UnsetUser());
           localStorage.setItem("token", "");
         }}

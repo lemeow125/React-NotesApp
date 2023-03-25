@@ -5,10 +5,11 @@ import AppIcon from "../AppIcon/AppIcon";
 import Login from "../LoginButton/LoginButton";
 import HomeIcon from "../HomeIcon/HomeIcon";
 import UserIcon from "../UserIcon/UserIcon";
-
+import PreviousSessionChecker from "../PreviousSessionChecker/PreviousSessionChecker";
 export default function Header() {
   return (
     <div style={styles.header}>
+      <PreviousSessionChecker />
       <div style={styles.flex_row}>
         <div
           style={{
