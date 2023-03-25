@@ -9,7 +9,7 @@ import { UserInfo, UserLogin } from "../../Components/Api/Api";
 
 import { useDispatch } from "react-redux";
 import { SetUser } from "../../Features/Redux/Slices/LoggedInUserSlice/LoggedInUserSlice";
-import { SetLoggedIn } from "../../Features/Redux/Slices/LoginSlice/LoginSlice";
+import { Toggle_Login } from "../../Features/Redux/Slices/LoginSlice/LoginSlice";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ export default function Login() {
               password: "",
             });
             if (await UserLogin(user)) {
-              await dispatch(SetLoggedIn());
+              await dispatch(Toggle_Login());
               await dispatch(SetUser(await UserInfo()));
               navigate("/");
             } else {
