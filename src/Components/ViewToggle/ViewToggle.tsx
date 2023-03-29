@@ -32,6 +32,7 @@ export default function ViewToggle() {
           />
           <p style={styles.text_small}>{switchLabel}</p>
         </div>
+        <p style={styles.text_medium}>Public Notes</p>
         <PublicNotes />
       </div>
     );
@@ -59,6 +60,7 @@ export default function ViewToggle() {
         />
         <p style={styles.text_small}>{switchLabel}</p>
       </div>
+      <p style={styles.text_medium}>Private Notes</p>
       <Notes />
     </div>
   );
