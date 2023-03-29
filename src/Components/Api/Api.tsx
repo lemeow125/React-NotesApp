@@ -10,7 +10,7 @@ import {
 // Note APIs
 
 const instance = axios.create({
-  baseURL: "https://keannu125.pythonanywhere.com",
+  baseURL: "https://keannu126.pythonanywhere.com",
 });
 
 export function GetNotes() {
