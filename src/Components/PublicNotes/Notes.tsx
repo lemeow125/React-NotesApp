@@ -1,13 +1,10 @@
 import * as React from "react";
 import styles from "../../styles";
 import { useNavigate } from "react-router-dom";
-import Note from "../Note/Note";
 import { Button } from "@mui/material";
 import { useQuery } from "react-query";
 import { GetPublicNotes } from "../Api/Api";
-import { useSelector } from "react-redux";
 import { NoteProps } from "../../Interfaces/Interfaces";
-import { RootState } from "../../Features/Redux/Store/Store";
 import PublicNote from "../PublicNote/Note";
 
 export default function PublicNotes() {
