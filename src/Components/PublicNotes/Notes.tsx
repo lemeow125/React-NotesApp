@@ -1,32 +1,23 @@
 import * as React from "react";
 import styles from "../../styles";
 import { useNavigate } from "react-router-dom";
-import Note from "../Note/Note";
 import { Button } from "@mui/material";
 import { useQuery } from "react-query";
-import { GetNotes } from "../Api/Api";
-import { useSelector } from "react-redux";
+import { GetPublicNotes } from "../Api/Api";
 import { NoteProps } from "../../Interfaces/Interfaces";
-import { RootState } from "../../Features/Redux/Store/Store";
+import PublicNote from "../PublicNote/Note";
 
-export default function Notes() {
+export default function PublicNotes() {
   const navigate = useNavigate();
   const {
     data: notes,
     isLoading,
     error,
-  } = useQuery("notes", GetNotes, { retry: 0 });
-  const logged_in = useSelector((state: RootState) => state.logged_in.value);
+  } = useQuery("public_notes", GetPublicNotes, { retry: 0 });
   if (isLoading) {
     return (
       <div style={styles.note}>
         <p style={styles.text_medium}>Loading Notes...</p>
-      </div>
-    );
-  } else if (!logged_in && error) {
-    return (
-      <div style={styles.note}>
-        <p style={styles.text_medium}>Please login to use Clip Notes</p>
       </div>
     );
   } else if (error) {
@@ -56,7 +47,7 @@ export default function Notes() {
     <>
       {notes.map((note: NoteProps, index: number) => {
         return (
-          <Note
+          <PublicNote
             id={note.id}
             key={index}
             title={note.title}
@@ -67,15 +58,6 @@ export default function Notes() {
           />
         );
       })}
-      <Button
-        style={styles.button_green}
-        variant="contained"
-        onClick={() => {
-          navigate("/NewNote");
-        }}
-      >
-        Add Note
-      </Button>
     </>
   );
 }

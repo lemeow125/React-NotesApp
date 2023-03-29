@@ -13,6 +13,7 @@ export default function Note(props: NoteProps) {
     mutationFn: DeleteNote,
     onSuccess: () => {
       queryClient.invalidateQueries("notes");
+      queryClient.invalidateQueries("public_notes");
     },
   });
   return (
@@ -30,6 +31,7 @@ export default function Note(props: NoteProps) {
         <p style={styles.text_medium}>
           Timestamp: {String(props.date_created)}
         </p>
+        <p style={styles.text_medium}>Public: {props.public ? "Yes" : "No"}</p>
         <div style={styles.flex_row}>
           <Button
             style={styles.button_red}

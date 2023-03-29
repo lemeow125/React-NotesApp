@@ -1,5 +1,5 @@
 import styles from "../../styles";
-import { Button } from "@mui/material";
+import { Button, Checkbox } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Header from "../../Components/Header/Header";
@@ -14,12 +14,14 @@ export default function NewNote() {
   const [note, setNote] = useState({
     title: "",
     content: "",
+    public: false,
   });
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: AddNote,
     onSuccess: () => {
       queryClient.invalidateQueries("notes");
+      queryClient.invalidateQueries("public_notes");
     },
   });
 
@@ -47,6 +49,15 @@ export default function NewNote() {
               }}
             />
           </div>
+          <div style={styles.flex_row}>
+            <p style={styles.text_small}>Public Note?</p>
+            <input
+              type="checkbox"
+              onClick={() => {
+                setNote({ ...note, public: !note.public });
+              }}
+            />
+          </div>
           <Button
             style={styles.button_green}
             variant="contained"
@@ -55,6 +66,7 @@ export default function NewNote() {
                 await mutation.mutate({
                   title: note.title,
                   content: note.content,
+                  public: note.public,
                 });
                 navigate("/");
               } catch (error) {}

@@ -6,6 +6,7 @@ export interface NoteProps {
   id: number;
   date_created: Date;
   owner: string;
+  public: boolean;
 }
 
 export interface IconProps {
@@ -34,10 +35,12 @@ export interface ActivationParams {
 export interface AddNoteParams {
   title: string;
   content: string;
+  public: boolean;
 }
 
 export interface UpdateNoteParams {
   id: number;
   title: string;
   content: string;
+  public: boolean;
 }

@@ -32,6 +32,7 @@ export default function Login() {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setUser({ ...user, username: e.target.value });
             }}
+            value={user.username}
           />
         </div>
         <div style={styles.flex_row}>
@@ -43,6 +44,7 @@ export default function Login() {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               setUser({ ...user, password: e.target.value });
             }}
+            value={user.password}
           />
         </div>
         <Button

@@ -10,13 +10,26 @@ import {
 // Note APIs
 
 const instance = axios.create({
-  baseURL: "https://keannu126.pythonanywhere.com",
+  baseURL: "https://keannu125.pythonanywhere.com",
 });
 
 export function GetNotes() {
   const token = JSON.parse(localStorage.getItem("token") || "{}");
   return instance
     .get("/api/v1/notes/", {
+      headers: {
+        Authorization: "Token " + token,
+      },
+    })
+    .then((response) => {
+      return response.data;
+    });
+}
+
+export function GetPublicNotes() {
+  const token = JSON.parse(localStorage.getItem("token") || "{}");
+  return instance
+    .get("/api/v1/public_notes/", {
       headers: {
         Authorization: "Token " + token,
       },
