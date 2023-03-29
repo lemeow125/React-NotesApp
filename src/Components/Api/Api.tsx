@@ -27,7 +27,6 @@ export function GetNotes() {
 }
 
 export function GetPublicNotes() {
-  const token = JSON.parse(localStorage.getItem("token") || "{}");
   return instance.get("/api/v1/public_notes/").then((response) => {
     return response.data;
   });
