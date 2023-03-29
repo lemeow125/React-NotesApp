@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import { useQuery } from "react-query";
 import { GetPublicNotes } from "../Api/Api";
 import { NoteProps } from "../../Interfaces/Interfaces";
-import PublicNote from "../PublicNote/Note";
+import PublicNote from "../PublicNote/PublicNote";
 
 export default function PublicNotes() {
   const navigate = useNavigate();
