@@ -3,7 +3,7 @@ import { useState } from "react";
 import styles from "../../styles";
 import { Switch } from "@mui/material";
 import Notes from "../Notes/Notes";
-import PublicNotes from "../PublicNotes/Notes";
+import PublicNotes from "../PublicNotes/PublicNotes";
 
 export default function ViewToggle() {
   const [switchLabel, setLabel] = useState("Viewing public notes");

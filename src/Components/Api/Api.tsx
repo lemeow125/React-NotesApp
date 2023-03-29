@@ -27,16 +27,9 @@ export function GetNotes() {
 }
 
 export function GetPublicNotes() {
-  const token = JSON.parse(localStorage.getItem("token") || "{}");
-  return instance
-    .get("/api/v1/public_notes/", {
-      headers: {
-        Authorization: "Token " + token,
-      },
-    })
-    .then((response) => {
-      return response.data;
-    });
+  return instance.get("/api/v1/public_notes/").then((response) => {
+    return response.data;
+  });
 }
 
 export function GetNote(id: number) {
