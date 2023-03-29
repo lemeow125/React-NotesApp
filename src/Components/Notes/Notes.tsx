@@ -16,9 +16,7 @@ export default function Notes() {
     isLoading,
     error,
   } = useQuery("notes", GetNotes, { retry: 0 });
-  const logged_in = useSelector(
-    (state: RootState) => state.logged_in.value
-    );
+  const logged_in = useSelector((state: RootState) => state.logged_in.value);
   if (isLoading) {
     return (
       <div style={styles.note}>
@@ -65,6 +63,7 @@ export default function Notes() {
             content={note.content}
             date_created={note.date_created}
             owner={note.owner}
+            public={note.public}
           />
         );
       })}

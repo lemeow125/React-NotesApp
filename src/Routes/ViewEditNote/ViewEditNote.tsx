@@ -1,5 +1,5 @@
 import styles from "../../styles";
-import { Button } from "@mui/material";
+import { Button, Checkbox } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../../Components/Header/Header";
@@ -17,11 +17,13 @@ export default function ViewNote() {
     mutationFn: UpdateNote,
     onSuccess: () => {
       queryClient.invalidateQueries("notes");
+      queryClient.invalidateQueries("public_notes");
     },
   });
   const [note, setNote] = useState({
-    title: "test",
-    content: "test",
+    title: "",
+    content: "",
+    public: true,
   });
   async function retrieve() {
     let a = await GetNote(Number(id));
@@ -53,7 +55,7 @@ export default function ViewNote() {
       </div>
     );
   }
-  if (data) {
+  if (data && note) {
     return (
       <div style={styles.background}>
         <Header />
@@ -80,6 +82,16 @@ export default function ViewNote() {
                 }}
               />
             </div>
+            <div style={styles.flex_row}>
+              <p style={styles.text_small}>Public Note?</p>
+              <input
+                type="checkbox"
+                defaultChecked={note.public}
+                onClick={() => {
+                  setNote({ ...note, public: !note.public });
+                }}
+              />
+            </div>
             <Button
               style={styles.button_green}
               variant="contained"
@@ -89,6 +101,7 @@ export default function ViewNote() {
                     id: Number(id),
                     title: note.title,
                     content: note.content,
+                    public: note.public,
                   });
                   navigate("/");
                 } catch (error) {}
